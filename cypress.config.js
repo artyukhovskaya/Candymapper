@@ -9,6 +9,8 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
     video: true,
     screenshotOnRunFailure: true,
-    testIsolation: true
+    testIsolation: true,
+    viewportWidth: 1280, 
+    viewportHeight: 720
   }
 });

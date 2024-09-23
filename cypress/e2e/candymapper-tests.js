@@ -11,7 +11,6 @@ import _ from 'lodash';
 
 describe('Candymapper tests', () => {
   beforeEach(() => {
-    cy.viewport(1920, 1080);
     cy.visit('https://candymapper.com');
     cy.get('#popup-widget238491-close-icon').click();
     cy.get('svg.c2-g').click();
@@ -25,7 +24,6 @@ describe('Candymapper tests', () => {
     cy.contains('Halloween Party').click();
     cy.url().should('eq', 'https://candymapper.com/halloween-party');
     cy.get('#nav-306407 > :nth-child(3) > .x-el').highlight();
-    cy.screenshot('1-Halloween-party');
   });
 
   it('Party guests', () => {
@@ -36,7 +34,6 @@ describe('Candymapper tests', () => {
     cy.getIframe('#iframe-06').find('#guests').select(randomGuestsNumber);
     cy.getIframe('#iframe-06').find('#guests').should('have.value', randomGuestsNumber);
     cy.getIframe('#iframe-06').find('#guests').highlight();
-    cy.screenshot('2-Party-guests');
   });
 
   it('Invalid email', () => {
@@ -48,6 +45,9 @@ describe('Candymapper tests', () => {
     cy.get('.x-el-button').click();
     cy.get('.c2-4n > .x-el').should('have.text', 'Please enter a valid email address.');
     cy.get('.c2-4n > .x-el').highlight();
-    cy.screenshot('3-Invalid-email');
+  });
+
+  afterEach(() => {
+    cy.screenshot(Cypress.mocha.getRunner().test.title);
   });
 });
